@@ -28,7 +28,7 @@
       <!--头部第二行 搜索区域-->
       <div class="bottom">
         <h1 class="logoArea">
-          <router-link class="logo" title="尚品汇" to="/home">
+          <router-link class="logo" title="尚品汇" to="/home" target="_blank">
             <img src="./images/logo.png" alt="" />
           </router-link>
         </h1>
@@ -38,8 +38,6 @@
               type="text"
               id="autocomplete"
               class="input-error input-xxlarge"
-              v-model="keyword"
-              placeholder="请输入要搜索的商品"
             />
             <button class="sui-btn btn-xlarge btn-danger" type="button" @click="toSearch">
               搜索
@@ -52,30 +50,6 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
-      keyword:''
-    }
-  },
-  methods:{
-    toSearch(){
-      let localtion = {name:"search"}
-      if(this.keyword){
-        localtion.params = {
-          keyword:this.keyword
-        }
-      }
-      this.$router.push(localtion)
-      // this.$router.push(`/search/${this.keyword}`)
-      // this.$router.push({
-      //   // path:"/search",
-      //   name:'search',
-      //   params:{
-      //     keyword:this.keyword
-      //   }
-      // })
-    }
-  }
 };
 </script>
 <style scoped lang="less">

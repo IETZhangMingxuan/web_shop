@@ -38,7 +38,7 @@
               type="text"
               id="autocomplete"
               class="input-error input-xxlarge"
-              v-model="keyword"
+              v-model="searchText"
               placeholder="请输入要搜索的商品"
             />
             <button class="sui-btn btn-xlarge btn-danger" type="button" @click="toSearch">
@@ -54,26 +54,12 @@
 export default {
   data(){
     return{
-      keyword:''
+      searchText:''
     }
   },
   methods:{
     toSearch(){
-      let localtion = {name:"search"}
-      if(this.keyword){
-        localtion.params = {
-          keyword:this.keyword
-        }
-      }
-      this.$router.push(localtion)
-      // this.$router.push(`/search/${this.keyword}`)
-      // this.$router.push({
-      //   // path:"/search",
-      //   name:'search',
-      //   params:{
-      //     keyword:this.keyword
-      //   }
-      // })
+      this.$router.push('/search')
     }
   }
 };

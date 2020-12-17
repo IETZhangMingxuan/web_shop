@@ -10,25 +10,19 @@ export default new VueRouter({
     }, {
         path: '/login',
         component: () => import('../pages/Login/Login'),
-        meta: {
-            xxx: true
-        }
+        meta:{xxx:true}
     }, {
         path: '/register',
         component: () => import('../pages/Register/Register'),
-        meta: {
-            xxx: true
-        }
+        meta:{xxx:true}
 
     }, {
         path: '/shopcart',
         component: () => import('../pages/ShopCart/ShopCart')
-    }, {
-        name:'search',
-        path: '/search/:keyword?',
-        component:() => import('../pages/Search/Search')
+    },,{
+        path:'/search'
     }, {
         path: '/',
-        redirect: '/home'
+        redirect:'/home'
     }]
 })

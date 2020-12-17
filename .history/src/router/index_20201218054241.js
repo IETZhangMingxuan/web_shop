@@ -24,9 +24,7 @@ export default new VueRouter({
         path: '/shopcart',
         component: () => import('../pages/ShopCart/ShopCart')
     }, {
-        name:'search',
-        path: '/search/:keyword?',
-        component:() => import('../pages/Search/Search')
+        path: '/search'
     }, {
         path: '/',
         redirect: '/home'

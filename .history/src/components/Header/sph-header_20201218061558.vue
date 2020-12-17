@@ -59,21 +59,14 @@ export default {
   },
   methods:{
     toSearch(){
-      let localtion = {name:"search"}
-      if(this.keyword){
-        localtion.params = {
+      // this.$router.push(`/search/${this.keyword}`)
+      this.$router.push({
+        // path:"/search",
+        name:'search',
+        params:{
           keyword:this.keyword
         }
-      }
-      this.$router.push(localtion)
-      // this.$router.push(`/search/${this.keyword}`)
-      // this.$router.push({
-      //   // path:"/search",
-      //   name:'search',
-      //   params:{
-      //     keyword:this.keyword
-      //   }
-      // })
+      })
     }
   }
 };
