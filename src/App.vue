@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <h2>GrayFox</h2>
-    <Test1/>
+    <Header/>
+    <router-view></router-view>
+    <Footer v-show="!$route.meta.xxx"/>
   </div>
 </template>
 
