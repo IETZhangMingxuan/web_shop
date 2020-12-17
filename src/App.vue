@@ -2,8 +2,6 @@
   <div id="app">
     <h2>GrayFox</h2>
     <Test1/>
-    <Test2/>
-    <Mock/>
   </div>
 </template>
 

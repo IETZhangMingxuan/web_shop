@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
     routes: [{
-        path: '/test1',
+        path: '/',
         component: () => import('../pages/test1.vue')
     }]
 })
