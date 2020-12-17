@@ -25,7 +25,6 @@ module.exports = {
         "components": resolve('src/components'),
         "pages": resolve('src/pages'),
         "router": resolve('src/router'),
-        "vuex": resolve('src/vuex'),
         "mock": resolve('src/mock'),
         "store":resolve('src/store')
       }
