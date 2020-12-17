@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import SphHeader from './components/Header/sph-header'
+import SphFooter from './components/Footer/sph-footer'
 export default {
   name: 'App',
   components: {}

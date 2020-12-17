@@ -1,13 +1,10 @@
 import Vue from 'vue'
-import 'vue-easyimport'
 import App from './App.vue'
+import 'vue-easyimport'
 import router from './router'
 import './mock/mock'
 import store from 'store/store'
 Vue.config.productionTip = false
-
-/* 注册主线 */
-Vue.prototype.$bus = new Vue()
 
 new Vue({
   render: h => h(App),

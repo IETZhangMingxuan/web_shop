@@ -6,8 +6,6 @@
     <Rank/>
     <Like/>
     <Floor/>
-    <Floor/>
-    <Brand/>
 </div>
 </template>
 <script>

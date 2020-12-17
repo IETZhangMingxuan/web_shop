@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <Sph-header/>
+    <Two/>
     <router-view></router-view>
-    <Sph-footer v-show="!$route.meta.xxx"/>
+    <One v-show="!$route.meta.xxx"/>
   </div>
 </template>
 
 <script>
+import One from './components/One'
 export default {
   name: 'App',
-  components: {}
+  components: {
+    One,Two
+  }
 }
 </script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

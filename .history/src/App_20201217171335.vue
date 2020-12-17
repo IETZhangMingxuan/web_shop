@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <Sph-header/>
+    <SphHeader/>
     <router-view></router-view>
-    <Sph-footer v-show="!$route.meta.xxx"/>
+    <SphFooter v-show="!$route.meta.xxx"/>
   </div>
 </template>
 
 <script>
+// import SphHeader from './components/Header/sph-header'
+// import SphFooter from './components/Footer/sph-footer'
 export default {
   name: 'App',
   components: {}

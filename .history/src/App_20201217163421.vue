@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <Sph-header/>
+    <Two/>
     <router-view></router-view>
-    <Sph-footer v-show="!$route.meta.xxx"/>
+    <One v-show="!$route.meta.xxx"/>
   </div>
 </template>
 
 <script>
+import One from './components/One/one'
+import Two from './components/Two/two'
 export default {
   name: 'App',
-  components: {}
+  components: {One,Two}
 }
 </script>
 

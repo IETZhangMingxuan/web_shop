@@ -2,7 +2,7 @@
   <div id="app">
     <Sph-header/>
     <router-view></router-view>
-    <Sph-footer v-show="!$route.meta.xxx"/>
+    <Sph-Footer v-show="!$route.meta.xxx"/>
   </div>
 </template>
 

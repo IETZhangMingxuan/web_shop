@@ -1,11 +1,10 @@
 <template>
-<div>头部组件</div>
+<div>主页</div>
 </template>
 <script>
 export default {
-    name:'Sph-header'
+    name:'Sph-Home'
 };
 </script>
-<style scoped>
-
+<style>
 </style>

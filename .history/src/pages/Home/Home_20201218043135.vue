@@ -1,13 +1,7 @@
 <template>
 <div id="sph-home">主页
     <TypeNav/>
-    <ListContainer/>
-    <TodayRecommend/>
-    <Rank/>
-    <Like/>
-    <Floor/>
-    <Floor/>
-    <Brand/>
+    <!-- <ListContainer/> -->
 </div>
 </template>
 <script>

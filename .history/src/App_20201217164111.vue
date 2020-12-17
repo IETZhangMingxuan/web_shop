@@ -7,6 +7,8 @@
 </template>
 
 <script>
+// import One from './components/One/one'
+// import Two from './components/Two/two'
 export default {
   name: 'App',
   components: {}

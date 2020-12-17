@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import SphHeader from ''
 export default {
   name: 'App',
   components: {}

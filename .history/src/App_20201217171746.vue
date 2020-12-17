@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Sph-header/>
+    <Header/>
     <router-view></router-view>
-    <Sph-footer v-show="!$route.meta.xxx"/>
+    <Footer v-show="!$route.meta.xxx"/>
   </div>
 </template>
 
