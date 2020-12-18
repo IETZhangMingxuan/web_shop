@@ -4,14 +4,14 @@ import state from './state'
 import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
-import home from './modules/home'
+import home from './module/home'
 Vue.use(Vuex)
-export default new Vuex.Store({
+export default new Vuex.store{
     state,
     getters,
-    mutations,
     actions,
-    modules:{
+    mutations,
+    module:{
         home
     }
-})
+}

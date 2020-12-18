@@ -14,8 +14,8 @@ export default {
     ...mapActions(["getCategoryList"])
   },
   components: {},
-  async created(){
-     await this.getCategoryList()
+  created(){
+    this.getCategoryList()
   }
 }
 </script>

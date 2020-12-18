@@ -9,12 +9,12 @@ module.exports = {
   devServer: {
     // port: 8000,
     open: true,
-    host: '127.0.0.1',
+    // host: '127.0.0.1',
     /* 解决跨域问题 */
     proxy: {
       /* 写代理服务器相关信息 */
       "/api": {
-        target: "http://182.92.128.115"
+        target: "http://182.92.128.115/"
       }
     }
   },
@@ -26,7 +26,7 @@ module.exports = {
         "pages": resolve('src/pages'),
         "router": resolve('src/router'),
         "mock": resolve('src/mock'),
-        "store": resolve('src/store')
+        "store":resolve('src/store')
       }
     }
   },

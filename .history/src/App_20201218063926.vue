@@ -11,11 +11,11 @@ import {mapActions} from 'vuex'
 export default {
   name: 'App',
   methods:{
-    ...mapActions(["getCategoryList"])
+    ...mapActions(["updateCategoryList"])
   },
   components: {},
-  async created(){
-     await this.getCategoryList()
+  created(){
+    this.updateCategoryList()
   }
 }
 </script>

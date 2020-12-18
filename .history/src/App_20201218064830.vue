@@ -15,6 +15,7 @@ export default {
   },
   components: {},
   async created(){
+    consoel.log(getCategoryList())
      await this.getCategoryList()
   }
 }

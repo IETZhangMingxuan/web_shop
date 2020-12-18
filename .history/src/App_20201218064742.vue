@@ -15,6 +15,7 @@ export default {
   },
   components: {},
   async created(){
+    console.log('created钩子执行了')
      await this.getCategoryList()
   }
 }

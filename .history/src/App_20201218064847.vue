@@ -15,6 +15,7 @@ export default {
   },
   components: {},
   async created(){
+    console.log(getCategoryList())
      await this.getCategoryList()
   }
 }

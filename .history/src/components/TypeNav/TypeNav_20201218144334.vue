@@ -1693,7 +1693,15 @@
   </div>
 </template>
 <script>
-export default {};
+/* read digure */
+import {mapState} from "vuex";
+export default {
+  computed:{
+    ...mapState({
+      CategoryList(state){return state.home.CategoryList}
+    })
+  }
+};
 </script>
 <style scoped lang="less">
     .type-nav {
