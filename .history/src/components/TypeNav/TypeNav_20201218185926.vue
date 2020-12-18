@@ -2,44 +2,43 @@
   <div id="sph-typenav">
     <div class="type-nav">
       <div class="container">
-        <div @mouseleave="wrapLeave" @mouseenter="wrapEnter">
-          <h2 class="all">全部商品分类</h2>
-          <div class="sort">
-            <div class="all-sort-list2">
-              <!-- 一级分类 -->
-              <div
-                class="item"
-                :class="{ showList: currentIndex === index }"
-                @mouseenter="itemEnter(index)"
-                v-for="(CategoryItem, index) in CategoryList"
-                :key="CategoryItem.categoryId"
-              >
-                <h3>
-                  <!-- 一级分类名 -->
-                  <a href="">{{ CategoryItem.categoryName }}</a>
-                </h3>
-                <div class="item-list clearfix">
-                  <div class="subitem">
-                    <!-- 二级分类 -->
-                    <dl
-                      class="fore"
-                      v-for="ChildItem in CategoryItem.categoryChild"
-                      :key="ChildItem.categoryId"
-                    >
-                      <dt>
-                        <a href="">{{ ChildItem.categoryName }}</a>
-                      </dt>
-                      <dd>
-                        <!-- 三级分类 -->
-                        <em
-                          v-for="ChildChildItem in ChildItem.categoryChild"
-                          :key="ChildChildItem.categoryId"
-                        >
-                          <a href="">{{ ChildChildItem.categoryName }}</a>
-                        </em>
-                      </dd>
-                    </dl>
-                  </div>
+        <h2 class="all">全部商品分类</h2>
+        
+        <div class="sort">
+          <div class="all-sort-list2">
+            <!-- 一级分类 -->
+            <div
+              class="item"
+              :class="{showList:currentIndex === index}"
+              @mouseenter="itemEnter(index)"
+              v-for="(CategoryItem, index) in CategoryList"
+              :key="CategoryItem.categoryId"
+            >
+              <h3>
+                <!-- 一级分类名 -->
+                <a href="">{{ CategoryItem.categoryName }}</a>
+              </h3>
+              <div class="item-list clearfix">
+                <div class="subitem">
+                  <!-- 二级分类 -->
+                  <dl
+                    class="fore"
+                    v-for="ChildItem in CategoryItem.categoryChild"
+                    :key="ChildItem.categoryId"
+                  >
+                    <dt>
+                      <a href="">{{ ChildItem.categoryName }}</a>
+                    </dt>
+                    <dd>
+                      <!-- 三级分类 -->
+                      <em
+                        v-for="ChildChildItem in ChildItem.categoryChild"
+                        :key="ChildChildItem.categoryId"
+                      >
+                        <a href="">{{ ChildChildItem.categoryName }}</a>
+                      </em>
+                    </dd>
+                  </dl>
                 </div>
               </div>
             </div>
@@ -60,28 +59,20 @@
   </div>
 </template>
 <script>
-import throttle from "lodash/throttle";
+import throttle from 'lodash/throttle'
 
 /* read digure */
 import { mapState } from "vuex";
 export default {
   data() {
     return {
-      currentIndex: -2,
+      currentIndex: -1,
     };
   },
-  methods: {
-    itemEnter: throttle(function(index) {
-      if (this.currentIndex > -2) {
-        this.currentIndex = index;
-      }
-    }, 200),
-    wrapLeave() {
-      this.currentIndex = -2;
-    },
-    wrapEnter(){
-      this.currentIndex = -1
-    }
+  methods:{
+    itemEnter:throttle(function(index){
+      this.currentIndex = index;
+    },100)
   },
   computed: {
     ...mapState({
@@ -208,7 +199,7 @@ export default {
           //   }
           // }
           &.showList {
-            background: #eaeaea;
+            background:#eaeaea;
             .item-list {
               display: block;
             }

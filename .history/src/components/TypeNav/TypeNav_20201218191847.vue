@@ -45,6 +45,7 @@
             </div>
           </div>
         </div>
+
         <nav class="nav">
           <a href="###">服装城</a>
           <a href="###">美妆馆</a>
@@ -72,10 +73,10 @@ export default {
   },
   methods: {
     itemEnter: throttle(function(index) {
-      if (this.currentIndex > -2) {
+      if (this.currentIndex > -1) {
         this.currentIndex = index;
       }
-    }, 200),
+    }, 1000),
     wrapLeave() {
       this.currentIndex = -2;
     },

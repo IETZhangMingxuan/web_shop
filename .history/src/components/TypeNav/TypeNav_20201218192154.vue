@@ -75,7 +75,7 @@ export default {
       if (this.currentIndex > -2) {
         this.currentIndex = index;
       }
-    }, 200),
+    }, 1000),
     wrapLeave() {
       this.currentIndex = -2;
     },

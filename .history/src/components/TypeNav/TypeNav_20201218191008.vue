@@ -2,7 +2,7 @@
   <div id="sph-typenav">
     <div class="type-nav">
       <div class="container">
-        <div @mouseleave="wrapLeave" @mouseenter="wrapEnter">
+        <div @mouseleave="wrapLeave">
           <h2 class="all">全部商品分类</h2>
           <div class="sort">
             <div class="all-sort-list2">
@@ -45,6 +45,7 @@
             </div>
           </div>
         </div>
+
         <nav class="nav">
           <a href="###">服装城</a>
           <a href="###">美妆馆</a>
@@ -67,21 +68,18 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      currentIndex: -2,
+      currentIndex: -1,
     };
   },
   methods: {
     itemEnter: throttle(function(index) {
-      if (this.currentIndex > -2) {
+      if (this.currentIndex >= -1) {
         this.currentIndex = index;
       }
-    }, 200),
+    }, 1000),
     wrapLeave() {
-      this.currentIndex = -2;
+      this.currentIndex = -1;
     },
-    wrapEnter(){
-      this.currentIndex = -1
-    }
   },
   computed: {
     ...mapState({
