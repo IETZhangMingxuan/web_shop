@@ -5,7 +5,6 @@ import router from './router'
 import './mock/mock'
 import store from 'store/store'
 Vue.config.productionTip = false
-import "nprogress/nprogress.css";
 
 /* 注册主线 */
 Vue.prototype.$bus = new Vue()
