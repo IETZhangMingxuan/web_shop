@@ -137,7 +137,6 @@ export default {
       category3Id ? (location.query.category3Id = category3Id) : "";
 
       this.$router.push(location);
-      this.wrapLeave();
     },
     /* 下面的代码被事件委托代替了 */
     /* toSearch({categoryName="",category1Id="",category2Id="",category3Id=""}){

@@ -86,15 +86,15 @@ export default {
     return {
       currentIndex: -2,
       /* 是否显示一级列表项; */
-      showOneLevel: ["/", "/home"].includes(this.$route.path),
+      showOneLevel:['/','/home'].includes(this.$route.path)
     };
   },
   methods: {
     /* 控制一级列表的显示与隐藏 */
-    allEnter() {
+    allEnter(){
       /* 不处于主页时 */
-      if (!["/", "/home"].includes(this.$route.path)) {
-        this.showOneLevel = true;
+      if(!["/","/home"].includes(this.$route.path)){
+        this.showOneLevel = true
       }
     },
     itemEnter: throttle(function(index) {
@@ -104,9 +104,10 @@ export default {
     }, 300),
     wrapLeave() {
       this.currentIndex = -2;
-      if(!["/", "/home"].includes(this.$route.path)) {
-        this.showOneLevel = false;
-      }
+      	if(!["/","/home"]).includes(this.$route.path)){
+		this.showOneLevel = false
+	}
+
     },
     wrapEnter() {
       this.currentIndex = -1;
@@ -114,31 +115,26 @@ export default {
     /* 点击三级分类导航条,跳转到search组件 */
     /* 将分类信息作为query携带到search组件(传参 ==> 解耦) */
     /* 使用了事件委托 */
-    toSearch(e) {
-      console.log("点击了" + e.target.dataset.categoryName);
+    toSearch(e){
+      console.log('点击了' + e.target.dataset.categoryName);
       /* 提取dataset属性集中的data-*属性 */
-      const {
-        categoryName,
-        category1Id,
-        category2Id,
-        category3Id,
-      } = e.target.dataset;
+      const {categoryName,category1Id,category2Id,category3Id} = e.target.dataset;
       /* 此处写了path,达姆写了name */
       /* 此处写了path,达姆写了name */
       /* 此处写了path,达姆写了name */
       /* 此处写了path,达姆写了name */
       /* 此处写了path,达姆写了name */
       /* 此处写了path,达姆写了name */
-      let location = { path: "search", query: {} };
+      let location = {path:'search',query:{}};
       /* 判断是否存在值 */
-      categoryName ? (location.query.categoryName = categoryName) : "";
-      category1Id ? (location.query.category1Id = category1Id) : "";
-      category2Id ? (location.query.category2Id = category2Id) : "";
-      category3Id ? (location.query.category3Id = category3Id) : "";
+      categoryName ? location.query.categoryName = categoryName : ''
+      category1Id ? location.query.category1Id = category1Id : ''
+      category2Id ? location.query.category2Id = category2Id : ''
+      category3Id ? location.query.category3Id = category3Id : ''
 
       this.$router.push(location);
-      this.wrapLeave();
-    },
+
+    }
     /* 下面的代码被事件委托代替了 */
     /* toSearch({categoryName="",category1Id="",category2Id="",category3Id=""}){
       this.$router.push({

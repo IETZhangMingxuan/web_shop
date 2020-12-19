@@ -27,14 +27,7 @@ export default new VueRouter({
         name:'search',
         path: '/search/:keyword?',
         component:() => import('../pages/Search/Search'),
-        props:route=>({
-            /* route : 路由对象 */
-            keyword:route.params.keyword,
-            categoryName:route.query.categoryName,
-            category1Id:route.query.category1Id,
-            category2Id:route.query.category2Id,
-            category3Id:route.query.category3Id,
-        })
+        props:true
     }, {
         path: '/',
         redirect: '/home'

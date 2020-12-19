@@ -3,10 +3,8 @@
     <div class="type-nav">
       <div class="container">
         <div @mouseleave="wrapLeave" @mouseenter="wrapEnter">
-          <!-- 全部商品导航栏标题 -->
-          <h2 class="all" @mouseenter="allEnter">全部商品分类</h2>
-          <!-- 全部商品导航栏列表项 -->
-          <div class="sort" @click="toSearch" v-show="showOneLevel">
+          <h2 class="all">全部商品分类</h2>
+          <div class="sort" @click="toSearch">
             <div class="all-sort-list2">
               <!-- 一级分类 -->
               <div
@@ -18,12 +16,7 @@
               >
                 <h3>
                   <!-- 一级分类名 -->
-                  <a
-                    href="javascript:;"
-                    :data-category-name="CategoryItem.categoryName"
-                    :data-category1-id="CategoryItem.categoryId"
-                    >{{ CategoryItem.categoryName }}</a
-                  >
+                  <a href="javascript:;" :data-category-name="CategoryItem.categoryName" :data-category1-id="CategoryItem.categoryId">{{ CategoryItem.categoryName }}</a>
                 </h3>
                 <div class="item-list clearfix">
                   <div class="subitem">
@@ -34,12 +27,7 @@
                       :key="ChildItem.categoryId"
                     >
                       <dt>
-                        <a
-                          href="javascript:;"
-                          :data-category-name="ChildItem.categoryName"
-                          :data-category2-id="ChildItem.categoryId"
-                          >{{ ChildItem.categoryName }}</a
-                        >
+                        <a href="javascript:;" :data-category-name="ChildItem.categoryName" :data-catogory2-id="ChildItem.categoryId">{{ ChildItem.categoryName }}</a>
                       </dt>
                       <dd>
                         <!-- 三级分类 -->
@@ -47,12 +35,9 @@
                           v-for="ChildChildItem in ChildItem.categoryChild"
                           :key="ChildChildItem.categoryId"
                         >
-                          <a
-                            href="javascript:;"
-                            :data-category-name="ChildChildItem.categoryName"
-                            :data-category3-id="ChildChildItem.categoryId"
-                            >{{ ChildChildItem.categoryName }}</a
-                          >
+                          <a href="javascript:;" :data-category-name="ChildChildItem.categoryName" :data-catogory3-id="ChildChildItem.categoryId">{{
+                            ChildChildItem.categoryName
+                          }}</a>
                         </em>
                       </dd>
                     </dl>
@@ -85,18 +70,9 @@ export default {
   data() {
     return {
       currentIndex: -2,
-      /* 是否显示一级列表项; */
-      showOneLevel: ["/", "/home"].includes(this.$route.path),
     };
   },
   methods: {
-    /* 控制一级列表的显示与隐藏 */
-    allEnter() {
-      /* 不处于主页时 */
-      if (!["/", "/home"].includes(this.$route.path)) {
-        this.showOneLevel = true;
-      }
-    },
     itemEnter: throttle(function(index) {
       if (this.currentIndex > -2) {
         this.currentIndex = index;
@@ -104,42 +80,29 @@ export default {
     }, 300),
     wrapLeave() {
       this.currentIndex = -2;
-      if(!["/", "/home"].includes(this.$route.path)) {
-        this.showOneLevel = false;
-      }
     },
     wrapEnter() {
       this.currentIndex = -1;
     },
     /* 点击三级分类导航条,跳转到search组件 */
     /* 将分类信息作为query携带到search组件(传参 ==> 解耦) */
-    /* 使用了事件委托 */
-    toSearch(e) {
-      console.log("点击了" + e.target.dataset.categoryName);
+    toSearch(e){
+      console.log('点击了' + e.target.dataset.categoryName);
       /* 提取dataset属性集中的data-*属性 */
-      const {
-        categoryName,
-        category1Id,
-        category2Id,
-        category3Id,
-      } = e.target.dataset;
-      /* 此处写了path,达姆写了name */
-      /* 此处写了path,达姆写了name */
-      /* 此处写了path,达姆写了name */
-      /* 此处写了path,达姆写了name */
-      /* 此处写了path,达姆写了name */
-      /* 此处写了path,达姆写了name */
-      let location = { path: "search", query: {} };
-      /* 判断是否存在值 */
-      categoryName ? (location.query.categoryName = categoryName) : "";
-      category1Id ? (location.query.category1Id = category1Id) : "";
-      category2Id ? (location.query.category2Id = category2Id) : "";
-      category3Id ? (location.query.category3Id = category3Id) : "";
+      const {categoryName="",category1Id="",category2Id="",category3Id=""} = e.target.dataset;
 
-      this.$router.push(location);
-      this.wrapLeave();
-    },
-    /* 下面的代码被事件委托代替了 */
+      let location = {path:'search',query:{}};
+      /* 判断是否存在值 */
+      categoryName ? location.query.categoryName = categoryName : ''
+      category1Id ? location.query.category1Id = category1Id : ''
+      category2Id ? location.query.category2Id = category2Id : ''
+      category3Id ? location.query.category3Id = category3Id : ''
+
+      this.$router.push({
+
+      })
+
+    }
     /* toSearch({categoryName="",category1Id="",category2Id="",category3Id=""}){
       this.$router.push({
         path:'/search',

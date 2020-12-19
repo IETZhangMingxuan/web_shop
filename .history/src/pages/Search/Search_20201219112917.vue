@@ -1,6 +1,5 @@
 <template>
   <div id="search">
-    <TypeNav/>
     <h2>Search组件</h2>
     <!-- search按钮带回来的数据 需要解耦 -->
     <span class="test">keyword:{{ keyword }}</span
