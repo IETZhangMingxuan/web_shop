@@ -61,11 +61,11 @@ export default {
     /* 点击搜索按钮触发的事件 */
     toSearch(){
       /* 要携带上三级分类的参数 */
-      let location = {name:"search"}
+      let location = {name:"search"};
       /* 携带query数据 */
-      if(Object.keys(this.$route.query).length !== 0){
+      if(Object.keys(this.$route.query).length !=== 0){
         location.query = this.$route.query
-      }
+      };
       /* 携带params数据 */
       if(this.keyword){
         location.params = {

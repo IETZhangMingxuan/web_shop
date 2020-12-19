@@ -60,19 +60,13 @@ export default {
   methods:{
     /* 点击搜索按钮触发的事件 */
     toSearch(){
-      /* 要携带上三级分类的参数 */
-      let location = {name:"search"}
-      /* 携带query数据 */
-      if(Object.keys(this.$route.query).length !== 0){
-        location.query = this.$route.query
-      }
-      /* 携带params数据 */
+      let localtion = {name:"search"}
       if(this.keyword){
-        location.params = {
+        localtion.params = {
           keyword:this.keyword
         }
       }
-      this.$router.push(location)
+      this.$router.push(localtion)
       // this.$router.push(`/search/${this.keyword}`)
       // this.$router.push({
       //   // path:"/search",

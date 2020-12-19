@@ -63,7 +63,7 @@ export default {
       /* 要携带上三级分类的参数 */
       let location = {name:"search"}
       /* 携带query数据 */
-      if(Object.keys(this.$route.query).length !== 0){
+      if(Object.keys(this.$route.query).length !=== 0){
         location.query = this.$route.query
       }
       /* 携带params数据 */
