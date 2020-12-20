@@ -50,7 +50,7 @@
           <div class="goods-list">
             <ul class="yui3-g">
               <!-- 单个商品 -->
-              <li class="yui3-u-1-5" v-for="good in SearchData.goodsList" :key="good.id">
+              <li class="yui3-u-1-5" v-for="good in SearchData.goodslist" :key="good.id">
                 <div class="list-wrap">
                   <div class="p-img">
                     <a href="javascript:;">
@@ -135,7 +135,7 @@ export default {
   ],
   computed: {
     ...mapState({
-      SearchData:state => state.search.SearchData
+      searchData:state => state.search.SearchData
     })
   },
   methods: {

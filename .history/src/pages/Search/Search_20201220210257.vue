@@ -50,25 +50,27 @@
           <div class="goods-list">
             <ul class="yui3-g">
               <!-- 单个商品 -->
-              <li class="yui3-u-1-5" v-for="good in SearchData.goodsList" :key="good.id">
+              <li class="yui3-u-1-5" v-for="good in SearchData.goodslist" :key="good.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="javascript:;">
-                      <img :src="good.defaultImg"
+                    <a href="item.html" target="_blank"
+                      ><img src="./images/mobile01.png"
                     /></a>
                   </div>
                   <div class="price">
                     <strong>
                       <em>¥ </em>
-                      <i>{{good.price}}</i>
+                      <i>6088.00</i>
                     </strong>
                   </div>
                   <div class="attr">
                     <a
                       target="_blank"
-                      href="javascript:;"
-                      :title="good.title"
-                      >{{good.title}}</a
+                      href="item.html"
+                      title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
+                      >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
+                      (A1699)Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
+                      (A1699)</a
                     >
                   </div>
                   <div class="commit">
@@ -135,7 +137,7 @@ export default {
   ],
   computed: {
     ...mapState({
-      SearchData:state => state.search.SearchData
+      searchData:state => state.search.SearchData
     })
   },
   methods: {
