@@ -4,15 +4,12 @@
       <div class="center">
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper" ref="swiper">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper" >
             <!-- 这个div要被循环 -->
-            <div
-              class="swiper-slide"
-              v-for="banner in Banners"
-              :key="banner.id"
-            >
+            <div class="swiper-slide" v-for="banner in Banners" :key="banner.id">
               <img :src="banner.imgUrl" />
             </div>
+            
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -96,38 +93,30 @@
 </template>
 
 <script>
-import Swiper from "swiper/swiper-bundle.min.js";
-import { mapState } from "vuex";
+import Swiper from 'swiper/swiper-bundle.min.js'
+import {mapState} from "vuex"
 export default {
   name: "ListContainer",
-  computed: {
+  computed:{
     ...mapState({
-      Banners: (state) => state.home.Banners,
-    }),
+      Banners:state => state.home.Banners
+    })
   },
-  watch: {
-    Banners: {
-      handler(val) {
-        this.$nextTick(() => {
-          new Swiper(this.$refs.swiper, {
-            loop: true, // 循环模式选项
-            autoplay: true,
-            // 如果需要分页器
-            pagination: {
-              el: ".swiper-pagination",
-            },
-
-            // 如果需要前进后退按钮
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            },
-          });
-        });
+  mounted() {
+    new Swiper(this.$refs.swiper, {
+      loop: true, // 循环模式选项
+      autoplay:true,
+      // 如果需要分页器
+      pagination: {
+        el: ".swiper-pagination",
       },
-      deep: true,
-      immediate: true,
-    },
+
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
   },
 };
 </script>

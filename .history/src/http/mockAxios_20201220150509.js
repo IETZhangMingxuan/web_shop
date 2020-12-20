@@ -11,6 +11,9 @@ axiosIns.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     nProgress.start();
     return config;
+}, function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
 });
 
 // 添加响应拦截器
@@ -20,7 +23,6 @@ axiosIns.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
     // 对响应错误做点什么
-    nProgress.done()
     return Promise.reject(error);
 });
 

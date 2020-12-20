@@ -11,7 +11,7 @@ import {mapActions} from 'vuex'
 export default {
   name: 'App',
   methods:{
-    ...mapActions(["getCategoryList","getBanners"])
+    ...mapActions(["getCategoryList"])
   },
   components: {},
   async created(){

@@ -6,7 +6,6 @@ import router from 'router'
 import store from 'store/store'
 Vue.config.productionTip = false
 import "nprogress/nprogress.css";
-import "swiper/swiper-bundle.min.css"
 /* 引入全局过渡动画文件 */
 import 'common/css/transition.less'
 /* 注册主线 */

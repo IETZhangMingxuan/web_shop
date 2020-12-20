@@ -6,7 +6,7 @@ const connectSuccess = 200;
 export default {
     state: {
         CategoryList: [],
-        Banners: []
+        banners: []
     },
     getters: {},
     mutations: {
@@ -14,7 +14,7 @@ export default {
             state.CategoryList = CategoryList
         },
         getBanners(state, banners) {
-            state.Banners = banners
+            state.banners = banners
         }
     },
     actions: {

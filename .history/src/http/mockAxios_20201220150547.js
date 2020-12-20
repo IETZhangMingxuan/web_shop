@@ -20,7 +20,6 @@ axiosIns.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
     // 对响应错误做点什么
-    nProgress.done()
     return Promise.reject(error);
 });
 

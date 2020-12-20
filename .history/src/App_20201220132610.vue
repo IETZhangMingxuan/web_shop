@@ -11,13 +11,12 @@ import {mapActions} from 'vuex'
 export default {
   name: 'App',
   methods:{
-    ...mapActions(["getCategoryList","getBanners"])
+    ...mapActions(["getCategoryList"])
   },
   components: {},
   async created(){
     /* 获取三级分类列表的数据 */
-     await this.getCategoryList();
-     await this.getBanners();
+     await this.getCategoryList()
   }
 }
 </script>
