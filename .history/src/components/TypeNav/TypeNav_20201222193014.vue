@@ -1,0 +1,300 @@
+<template>
+  <div id="sph-typenav">
+    <div class="type-nav">
+      <div class="container">
+        <div @mouseleave="wrapLeave" @mouseenter="wrapEnter">
+          <!-- 全部商品导航栏标题 -->
+          <h2 class="all" @mouseenter="allEnter">全部商品分类</h2>
+          <transition name="item">
+            <!-- 全部商品导航栏列表项 -->
+            <div class="sort" @click="toSearch" v-show="showOneLevel">
+              <div class="all-sort-list2">
+                <!-- 一级分类 -->
+                <div
+                  class="item"
+                  :class="{ showList: currentIndex === index }"
+                  @mouseenter="itemEnter(index)"
+                  v-for="(CategoryItem, index) in CategoryList"
+                  :key="CategoryItem.categoryId"
+                >
+                  <h3>
+                    <!-- 一级分类名 -->
+                    <a
+                      href="javascript:;"
+                      :data-category-name="CategoryItem.categoryName"
+                      :data-category1-id="CategoryItem.categoryId"
+                      >{{ CategoryItem.categoryName }}</a
+                    >
+                  </h3>
+                  <div class="item-list clearfix">
+                    <div class="subitem">
+                      <!-- 二级分类 -->
+                      <dl
+                        class="fore"
+                        v-for="ChildItem in CategoryItem.categoryChild"
+                        :key="ChildItem.categoryId"
+                      >
+                        <dt>
+                          <a
+                            href="javascript:;"
+                            :data-category-name="ChildItem.categoryName"
+                            :data-category2-id="ChildItem.categoryId"
+                            >{{ ChildItem.categoryName }}</a
+                          >
+                        </dt>
+                        <dd>
+                          <!-- 三级分类 -->
+                          <em
+                            v-for="ChildChildItem in ChildItem.categoryChild"
+                            :key="ChildChildItem.categoryId"
+                          >
+                            <a
+                              href="javascript:;"
+                              :data-category-name="ChildChildItem.categoryName"
+                              :data-category3-id="ChildChildItem.categoryId"
+                              >{{ ChildChildItem.categoryName }}</a
+                            >
+                          </em>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
+        <nav class="nav">
+          <a href="###">服装城</a>
+          <a href="###">美妆馆</a>
+          <a href="###">生鲜超市</a>
+          <a href="###">全球购</a>
+          <a href="###">闪购</a>
+          <a href="###">团购</a>
+          <a href="###">有趣</a>
+          <a href="###">秒杀</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import throttle from "lodash/throttle";
+
+/* read digure */
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      currentIndex: -2,
+      /* 是否显示一级列表项; */
+      showOneLevel: ["/", "/home"].includes(this.$route.path),
+    };
+  },
+  methods: {
+    /* 控制一级列表的显示与隐藏 */
+    allEnter() {
+      /* 不处于主页时 */
+      if (!["/", "/home"].includes(this.$route.path)) {
+        this.showOneLevel = true;
+      }
+    },
+    itemEnter: throttle(function(index) {
+      if (this.currentIndex > -2) {
+        this.currentIndex = index;
+      }
+    }, 300),
+    wrapLeave() {
+      this.currentIndex = -2;
+      if (!["/", "/home"].includes(this.$route.path)) {
+        this.showOneLevel = false;
+      }
+    },
+    wrapEnter() {
+      this.currentIndex = -1;
+    },
+    /* 点击三级分类导航条,跳转到search组件 */
+    /* 将分类信息作为query携带到search组件(传参 ==> 解耦) */
+    /* 使用了事件委托 */
+    toSearch(e) {
+      console.log("点击了" + e.target.dataset.categoryName);
+      /* 提取dataset属性集中的data-*属性 */
+      const {
+        categoryName,
+        category1Id,
+        category2Id,
+        category3Id,
+      } = e.target.dataset;
+      /* 此处写了path,达姆写了name */
+      /* 此处写了path,达姆写了name */
+      /* 此处写了path,达姆写了name */
+      /* 此处写了path,达姆写了name */
+      /* 此处写了path,达姆写了name */
+      /* 此处写了path,达姆写了name */
+      let location = { name: "search", query: {} };
+      /* 判断是否存在值 */
+      categoryName ? (location.query.categoryName = categoryName) : "";
+      category1Id ? (location.query.category1Id = category1Id) : "";
+      category2Id ? (location.query.category2Id = category2Id) : "";
+      category3Id ? (location.query.category3Id = category3Id) : "";
+
+      /* 添加params数据 */
+      if(Object.keys(this.$route.params).length !== 0){
+        location.params = this.$route.params
+      }
+
+
+      this.$router.push(location);
+      this.wrapLeave();
+    },
+    /* 下面的代码被事件委托代替了 */
+    /* toSearch({categoryName="",category1Id="",category2Id="",category3Id=""}){
+      this.$router.push({
+        path:'/search',
+        query:{
+          categoryName,
+          category1Id,
+          category2Id,
+          category3Id
+        }
+      })
+    } */
+  },
+  computed: {
+    ...mapState({
+      CategoryList(state) {
+        return state.home.CategoryList;
+      },
+    }),
+  },
+};
+</script>
+<style scoped lang="less">
+.type-nav {
+  border-bottom: 2px solid #e1251b;
+
+  .container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+
+    .all {
+      width: 210px;
+      height: 45px;
+      background-color: #e1251b;
+      line-height: 45px;
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .nav {
+      a {
+        height: 45px;
+        margin: 0 22px;
+        line-height: 45px;
+        font-size: 16px;
+        color: #333;
+        text-decoration: none;
+      }
+    }
+
+    .sort {
+      position: absolute;
+      left: 0;
+      top: 45px;
+      width: 210px;
+      height: 461px;
+      position: absolute;
+      background: #fafafa;
+      z-index: 999;
+
+      .all-sort-list2 {
+        .item {
+          h3 {
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: 400;
+            overflow: hidden;
+            padding: 0 20px;
+            margin: 0;
+
+            a {
+              color: #333;
+              text-decoration: none;
+            }
+          }
+
+          .item-list {
+            display: none;
+            position: absolute;
+            width: 734px;
+            min-height: 460px;
+            background: #f7f7f7;
+            left: 210px;
+            border: 1px solid #ddd;
+            top: 0;
+            z-index: 9999 !important;
+
+            .subitem {
+              float: left;
+              width: 650px;
+              padding: 0 4px 0 8px;
+
+              dl {
+                border-top: 1px solid #eee;
+                padding: 6px 0;
+                overflow: hidden;
+                zoom: 1;
+
+                &.fore {
+                  border-top: 0;
+                }
+
+                dt {
+                  float: left;
+                  width: 54px;
+                  line-height: 22px;
+                  text-align: right;
+                  padding: 3px 6px 0 0;
+                  font-weight: 700;
+                }
+
+                dd {
+                  float: left;
+                  width: 415px;
+                  padding: 3px 0 0;
+                  overflow: hidden;
+
+                  em {
+                    float: left;
+                    height: 14px;
+                    line-height: 14px;
+                    padding: 0 8px;
+                    margin-top: 5px;
+                    border-left: 1px solid #ccc;
+                  }
+                }
+              }
+            }
+          }
+          /* 使用vue来控制 */
+          // &:hover {
+          //   .item-list {
+          //     display: block;
+          //   }
+          // }
+          &.showList {
+            background: #eaeaea;
+            .item-list {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
