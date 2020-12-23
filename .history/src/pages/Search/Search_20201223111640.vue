@@ -12,27 +12,21 @@
           </ul>
           <ul class="fl sui-tag">
             <!-- 三级分类条件的显示 -->
-            <li class="with-x sph_tradeImg" v-if="options.categoryName">
+            <li class="with-x" v-if="options.categoryName">
               {{ options.categoryName }}<i @click="removeCategoryName">×</i>
             </li>
             <!-- 搜索关键字条件的显示 -->
-            <li class="with-x sph_tradeImg" v-if="options.keyword">
+            <li class="with-x" v-if="options.keyword">
               {{ options.keyword }}<i @click="removeKeyword">×</i>
             </li>
-            <!-- 品牌标签的显示 -->
-            <li class="with-x sph_tradeImg" v-if="options.trademark">
-              品牌: {{ options.trademark.split(":")[1]
-              }}<i @click="removeTradeMark">x</i>
-            </li>
-            <!-- 属性标签的显示 可显示多个 -->
-            <li class="with-x" v-for="(prop,index) in options.props" :key="index">
-              {{prop.split(':')[2]}}:{{prop.split(':')[1]}}<i @click="removeProps(index)">x</i>
+            <li class="with-x" v-if="options.trademark">
+              {{options.trademark}}<i @click="javascript:;"></i>
             </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector @updateTradeMark="updateTradeMark" @updateProps="updateProps"/>
+        <SearchSelector />
 
         <!--details-->
         <div class="details clearfix">
@@ -143,8 +137,7 @@ export default {
         category3Id: "",
         categoryName: "",
         keyword: "", //搜索按钮
-        trademark: "", //品牌
-        props: [], //属性
+        trademark:""
       },
     };
   },
@@ -197,9 +190,9 @@ export default {
       this.options.category3Id = "";
       // await this.updateCPage(1);
       this.$router.push({
-        path: this.$route.path,
-        hash: `#${Date.now()}`,
-      });
+        path:this.$route.path,
+        hash:`#${Date.now()}`
+      })
     },
     async removeKeyword() {
       this.options.keyword = "";
@@ -209,37 +202,12 @@ export default {
       // 编程式路由跳转会自动更新url配合watch监听发送请求
       // await this.updateCPage(1);
       this.$router.push({
-        name: "search",
-        query: this.$route.query,
-        hash: `#${Date.now()}`,
-      });
-      this.$bus.$emit("clearHInput", "");
+        name:'search',
+        query:this.$route.query,
+        hash:`#${Date.now()}`
+      })
+      this.$bus.$emit("clearHInput","")
     },
-    async updateTradeMark({ id, name }) {
-      /* 设置看门狗,当每次点击相同品牌时,自动拦截逻辑的进行 */
-      if(+this.options.trademark.split(':')[0] === id) return;
-      this.options.trademark = `${id}:${name}`;
-      await this.updateCPage(1);
-    },
-    async removeTradeMark() {
-      this.options.trademark = "";
-      await this.updateCPage(1);
-    },
-    /* 属性标签逻辑 */
-    /* 注:这个value是子组件传进来的,一定要看好属性名 */
-    async updateProps({id,name,value}){
-      if(this.options.props.includes(`${id}:${value}:${name}`)) return;
-      this.options.props.push(`${id}:${value}:${name}`);
-      await this.updateCPage(1);
-    },
-    /* index参数记得传 */
-    async removeProps(index){
-      // 这样就都清空了,不行
-      // this.options.props = [];
-      /* 下面只清除当前的 */
-      this.options.props.splice(index,1);
-      await this.updateCPage(1);
-    }
   },
   /* 上面只替换了两个必须的请求参数,获取到的是全部数据 */
   /* 挂载前就获取数据 */
@@ -330,9 +298,6 @@ export default {
           &:hover {
             color: #28a3ef;
           }
-        }
-        .sph_tradeImg:hover {
-          cursor: pointer;
         }
       }
     }

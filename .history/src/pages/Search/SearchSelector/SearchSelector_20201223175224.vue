@@ -19,7 +19,7 @@
       <div class="fl value">
         <ul class="type-list">
           <li v-for="(val,index) in attr.attrValueList" :key="index" @click="$emit('updateProps',{id:attr.attrId,name:attr.attrName,value:val})">
-            <a>{{val}}</a>
+            <a>{{value}}</a>
           </li>
         </ul>
       </div>

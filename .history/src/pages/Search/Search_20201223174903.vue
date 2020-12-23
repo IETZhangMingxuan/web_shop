@@ -226,14 +226,11 @@ export default {
       await this.updateCPage(1);
     },
     /* 属性标签逻辑 */
-    /* 注:这个value是子组件传进来的,一定要看好属性名 */
-    async updateProps({id,name,value}){
-      if(this.options.props.includes(`${id}:${value}:${name}`)) return;
-      this.options.props.push(`${id}:${value}:${name}`);
+    async updateProps({id,name,val}){
+      this.options.props.push(`${id}:${val}:${name}`);
       await this.updateCPage(1);
     },
-    /* index参数记得传 */
-    async removeProps(index){
+    async removeProps(){
       // 这样就都清空了,不行
       // this.options.props = [];
       /* 下面只清除当前的 */

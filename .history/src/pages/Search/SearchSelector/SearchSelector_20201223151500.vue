@@ -18,7 +18,7 @@
       <div class="fl key">{{attr.attrName}}</div>
       <div class="fl value">
         <ul class="type-list">
-          <li v-for="(val,index) in attr.attrValueList" :key="index" @click="$emit('updateProps',{id:attr.attrId,name:attr.attrName,value:val})">
+          <li v-for="(val,index) in attr.attrValueList" :key="index" @click="$emit('updateProps',{id:attr.attrId,name:attr.attrName})">
             <a>{{val}}</a>
           </li>
         </ul>

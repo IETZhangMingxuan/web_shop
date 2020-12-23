@@ -25,8 +25,8 @@
               }}<i @click="removeTradeMark">x</i>
             </li>
             <!-- 属性标签的显示 可显示多个 -->
-            <li class="with-x" v-for="(prop,index) in options.props" :key="index">
-              {{prop.split(':')[2]}}:{{prop.split(':')[1]}}<i @click="removeProps(index)">x</i>
+            <li class="with-x sph_tradeImg" v-for="(prop,index) in options.props" :key="index">
+              {{prop.split(':')[2]}}:{{prop.split(':')[0]}}<i @click="removeProps">x</i>
             </li>
           </ul>
         </div>
@@ -226,18 +226,12 @@ export default {
       await this.updateCPage(1);
     },
     /* 属性标签逻辑 */
-    /* 注:这个value是子组件传进来的,一定要看好属性名 */
     async updateProps({id,name,value}){
-      if(this.options.props.includes(`${id}:${value}:${name}`)) return;
       this.options.props.push(`${id}:${value}:${name}`);
       await this.updateCPage(1);
     },
-    /* index参数记得传 */
-    async removeProps(index){
-      // 这样就都清空了,不行
-      // this.options.props = [];
-      /* 下面只清除当前的 */
-      this.options.props.splice(index,1);
+    async removeProps(){
+      this.options.props = [];
       await this.updateCPage(1);
     }
   },

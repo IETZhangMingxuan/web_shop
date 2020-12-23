@@ -232,7 +232,7 @@ export default {
       this.options.props.push(`${id}:${value}:${name}`);
       await this.updateCPage(1);
     },
-    /* index参数记得传 */
+    /* 参数记得传 */
     async removeProps(index){
       // 这样就都清空了,不行
       // this.options.props = [];
