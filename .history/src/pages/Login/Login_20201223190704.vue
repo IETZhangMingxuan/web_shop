@@ -6,6 +6,7 @@
 </template>
 <script>
 export default {
+  name: "Sph-Login",
 };
 </script>
 <style></style>

@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <h2>登录页</h2>
-    
-  </div>
+<div>登录页</div>
 </template>
 <script>
 export default {
+    name:'Sph-Login'
+
 };
 </script>
-<style></style>
+<style>
+</style>

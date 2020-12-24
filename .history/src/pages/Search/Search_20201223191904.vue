@@ -46,8 +46,29 @@
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
-              <!-- 此处封装了排序组件 -->
-              <OrderButton :orderTypes="orderTypes" :order="options.order" @click="orderFn"/>
+              <ul class="sui-nav">
+                <!-- 这个判断,判断这个1它不是数字 是字符串 -->
+                <li :class="{ active: options.order.split(':')[0] === `1` }">
+                  <a href="javascript:;">综合</a>
+                </li>
+                <li>
+                  <a href="javascript:;">销量</a>
+                </li>
+                <li>
+                  <a href="javascript:;">新品</a>
+                </li>
+                <li>
+                  <a href="javascript:;">评价</a>
+                </li>
+                <li :class="{ active: options.order.split(':')[0] === `2` }">
+                  <a href="javascript:;">价格<i class="iconfont icon-jiantou"></i
+                  ></a>
+                </li>
+                <li :class="{ active: options.order.split(':')[0] === `1` }">
+                  <a href="javascript:;">价格<i class="iconfont icon-jiantou-xia"></i
+                  ></a>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="goods-list">
@@ -135,7 +156,7 @@ export default {
         keyword: "", //搜索按钮
         trademark: "", //品牌
         props: [], //属性
-        order: "1:desc",//1综合 2价格 asc升序 desc降序 默认使用综合降序
+        order: "2:desc",
       },
     };
   },
@@ -147,7 +168,6 @@ export default {
     "category3Id",
   ],
   computed: {
-    ...mapState(["orderTypes"]),
     ...mapState({
       SearchData: (state) => state.search.SearchData,
     }),
@@ -232,18 +252,6 @@ export default {
       this.options.props.splice(index, 1);
       await this.updateCPage(1);
     },
-    /* 排序功能事件 */
-    async orderFn(index){
-      /* 当字段没有切换,则切换当前字段的 */
-      if(this.options.order.split(':')[0] === index){
-        let flag = this.options.order.split(':')[1] === "asc" ? "desc" : "asc";
-        this.options.order = `${index}:${flag}`
-      }else{
-      /* 当字段发生了切换 */  
-        this.options.order = `${index}:desc`
-      }
-      await this.updateCPage(1);
-    }
   },
   /* 上面只替换了两个必须的请求参数,获取到的是全部数据 */
   /* 挂载前就获取数据 */

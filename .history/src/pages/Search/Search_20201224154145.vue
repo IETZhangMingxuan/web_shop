@@ -240,7 +240,7 @@ export default {
         this.options.order = `${index}:${flag}`
       }else{
       /* 当字段发生了切换 */  
-        this.options.order = `${index}:desc`
+        this.options.order = `{index}:desc`
       }
       await this.updateCPage(1);
     }

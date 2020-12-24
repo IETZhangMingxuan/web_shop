@@ -10,9 +10,7 @@
             <p>
               <span>请</span>
               <router-link to="/login">登录</router-link>
-              <router-link to="/register" class="register"
-                >免费注册</router-link
-              >
+              <router-link to="/register" class="register">免费注册</router-link>
             </p>
           </div>
           <div class="typeList">
@@ -43,11 +41,7 @@
               v-model="keyword"
               placeholder="请输入要搜索的商品"
             />
-            <button
-              class="sui-btn btn-xlarge btn-danger"
-              type="button"
-              @click="toSearch"
-            >
+            <button class="sui-btn btn-xlarge btn-danger" type="button" @click="toSearch">
               搜索
             </button>
           </form>
@@ -58,32 +52,32 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      keyword: "",
-    };
+  data(){
+    return{
+      keyword:''
+    }
   },
-  methods: {
+  methods:{
     /* 点击搜索按钮触发的事件 */
-    toSearch() {
+    toSearch(){
       /* 要携带上三级分类的参数 */
-      let location = { name: "search" };
+      let location = {name:"search"}
       /* 携带query数据 */
-      if (Object.keys(this.$route.query).length !== 0) {
-        location.query = this.$route.query;
+      if(Object.keys(this.$route.query).length !== 0){
+        location.query = this.$route.query
       }
       /* 携带params数据 */
-      if (this.keyword) {
+      if(this.keyword){
         location.params = {
-          keyword: this.keyword,
-        };
+          keyword:this.keyword
+        }
       }
       /* this.$router.push(location) */
-      if (this.$route.path.toLowerCase().startsWith("/search")) {
-        this.$router.replace(location);
-      } else {
-        this.$router.push(location);
-      }
+      if(this.$route.path.toLowerCase()..startsWith("/search")){
+                    this.$router.replace(localtion)
+                }else{
+                    this.$router.push(localtion)
+                }
       // ↑版本回退Backspace问题
       /* ↑当从search组件跳转到search组件 应该使用replace 不能使用push;因为我们不想缓存当前的url
           当从其他组件跳转到search组件 应该使用push 不能使用replace;因为我们想缓存当前的url */
@@ -96,13 +90,13 @@ export default {
       //     keyword:this.keyword
       //   }
       // })
-    },
+    }
   },
-  mounted() {
-    this.$bus.$on("clearHInput", (val) => {
-      this.keyword = val;
-    });
-  },
+  mounted(){
+    this.$bus.$on("clearHInput",val=>{
+      this.keyword = val
+    })
+  }
 };
 </script>
 <style scoped lang="less">

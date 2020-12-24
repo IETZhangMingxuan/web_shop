@@ -238,11 +238,7 @@ export default {
       if(this.options.order.split(':')[0] === index){
         let flag = this.options.order.split(':')[1] === "asc" ? "desc" : "asc";
         this.options.order = `${index}:${flag}`
-      }else{
-      /* 当字段发生了切换 */  
-        this.options.order = `${index}:desc`
       }
-      await this.updateCPage(1);
     }
   },
   /* 上面只替换了两个必须的请求参数,获取到的是全部数据 */

@@ -25,29 +25,40 @@
               }}<i @click="removeTradeMark">x</i>
             </li>
             <!-- 属性标签的显示 可显示多个 -->
-            <li
-              class="with-x"
-              v-for="(prop, index) in options.props"
-              :key="index"
-            >
-              {{ prop.split(":")[2] }}:{{ prop.split(":")[1]
-              }}<i @click="removeProps(index)">x</i>
+            <li class="with-x" v-for="(prop,index) in options.props" :key="index">
+              {{prop.split(':')[2]}}:{{prop.split(':')[1]}}<i @click="removeProps(index)">x</i>
             </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector
-          @updateTradeMark="updateTradeMark"
-          @updateProps="updateProps"
-        />
+        <SearchSelector @updateTradeMark="updateTradeMark" @updateProps="updateProps"/>
 
         <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
-              <!-- 此处封装了排序组件 -->
-              <OrderButton :orderTypes="orderTypes" :order="options.order" @click="orderFn"/>
+              <ul class="sui-nav">
+                <!-- 这个判断,判断这个1它不是数字 是字符串 -->
+                <li :class="{active:options.order.split(':')[0] === `1`}">
+                  <a href="javascript:;">综合</a>
+                </li>
+                <li>
+                  <a href="javascript:;">销量</a>
+                </li>
+                <li>
+                  <a href="javascript:;">新品</a>
+                </li>
+                <li>
+                  <a href="javascript:;">评价</a>
+                </li>
+                <li :class="{active:options.order.split(':')[0] === `2`}">
+                  <a href="javascript:;">价格<i class="icon-font icon-arrow-up"></i></a>
+                </li>
+                <li :class="{active:options.order.split(':')[0] === `2`}">
+                  <a href="javascript:;">价格<i class="icon-font icon-arrowdown"></i></a>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="goods-list">
@@ -135,7 +146,7 @@ export default {
         keyword: "", //搜索按钮
         trademark: "", //品牌
         props: [], //属性
-        order: "1:desc",//1综合 2价格 asc升序 desc降序 默认使用综合降序
+        order:"2:desc",
       },
     };
   },
@@ -147,7 +158,6 @@ export default {
     "category3Id",
   ],
   computed: {
-    ...mapState(["orderTypes"]),
     ...mapState({
       SearchData: (state) => state.search.SearchData,
     }),
@@ -209,7 +219,7 @@ export default {
     },
     async updateTradeMark({ id, name }) {
       /* 设置看门狗,当每次点击相同品牌时,自动拦截逻辑的进行 */
-      if (+this.options.trademark.split(":")[0] === id) return;
+      if(+this.options.trademark.split(':')[0] === id) return;
       this.options.trademark = `${id}:${name}`;
       await this.updateCPage(1);
     },
@@ -219,29 +229,17 @@ export default {
     },
     /* 属性标签逻辑 */
     /* 注:这个value是子组件传进来的,一定要看好属性名 */
-    async updateProps({ id, name, value }) {
-      if (this.options.props.includes(`${id}:${value}:${name}`)) return;
+    async updateProps({id,name,value}){
+      if(this.options.props.includes(`${id}:${value}:${name}`)) return;
       this.options.props.push(`${id}:${value}:${name}`);
       await this.updateCPage(1);
     },
     /* index参数记得传 */
-    async removeProps(index) {
+    async removeProps(index){
       // 这样就都清空了,不行
       // this.options.props = [];
       /* 下面只清除当前的 */
-      this.options.props.splice(index, 1);
-      await this.updateCPage(1);
-    },
-    /* 排序功能事件 */
-    async orderFn(index){
-      /* 当字段没有切换,则切换当前字段的 */
-      if(this.options.order.split(':')[0] === index){
-        let flag = this.options.order.split(':')[1] === "asc" ? "desc" : "asc";
-        this.options.order = `${index}:${flag}`
-      }else{
-      /* 当字段发生了切换 */  
-        this.options.order = `${index}:desc`
-      }
+      this.options.props.splice(index,1);
       await this.updateCPage(1);
     }
   },
@@ -286,16 +284,13 @@ export default {
         li {
           display: inline-block;
           line-height: 18px;
+
           a {
             color: #666;
             text-decoration: none;
 
             &:hover {
               color: #4cb9fc;
-            }
-            i{
-              font-size: 30px;
-              color:black;
             }
           }
         }
@@ -381,7 +376,7 @@ export default {
 
               &.active {
                 a {
-                  background:#e1251b;
+                  background: orange;
                   color: #fff;
                 }
               }
